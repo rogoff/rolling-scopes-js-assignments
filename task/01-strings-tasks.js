@@ -202,7 +202,9 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+    return '\u250C' + '\u2500'.repeat(width-2) + '\u2510\n'+
+          ('\u2502' + '\u0020'.repeat(width-2) + '\u2502\n').repeat(height-2) +
+           '\u2514' + '\u2500'.repeat(width-2) + '\u2518\n'
 }
 
 
