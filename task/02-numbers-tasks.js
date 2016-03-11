@@ -105,7 +105,7 @@ function getLinearEquationRoot(a, b) {
  *
  * @example:
  *   (1,0) (0,1)     => π/2
- *   (0,1) (0,-1)    => -π
+ *   (0,1) (0,-1)    => π
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
@@ -234,6 +234,7 @@ module.exports = {
     getLastDigit: getLastDigit,
     parseNumberFromString: parseNumberFromString,
     getParallelipidedDiagonal: getParallelipidedDiagonal,
+    roundToPowerOfTen: roundToPowerOfTen,
     isPrime: isPrime,
     toNumber: toNumber
 };
