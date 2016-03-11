@@ -224,7 +224,18 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+    var result = "";
+    for (var i = 0; i < str.length; i++) {
+        var elem = str.charCodeAt(i);
+        if ((elem >= 65) && (elem <= 90)){
+            result += elem > 77 ? String.fromCharCode(elem - 13) : String.fromCharCode(elem + 13);
+        } else if ((elem >= 97) && (elem <= 122)) {
+            result += elem > 109 ? String.fromCharCode(elem - 13) : String.fromCharCode(elem + 13);
+        } else {
+            result += str[i];
+        }
+    }
+    return result;
 }
 
 /**
