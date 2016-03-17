@@ -273,10 +273,8 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    return ['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
-            'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
-            'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
-            'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'].indexOf(value);
+    var rankOfCard = value.slice(0,-1);
+    return '♣♦♥♠'.indexOf(value.slice(-1)) * 13 + 'A23456789TJQK'.indexOf((rankOfCard === '10') ? 'T' : rankOfCard);
 }
 
 
