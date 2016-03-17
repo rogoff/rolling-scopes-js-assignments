@@ -78,12 +78,7 @@ function isLeapYear(date) {
  */
 function timeSpanToString(startDate, endDate) {
     let timeSpan = new Date(endDate - startDate);
-    let timeSpanHours = timeSpan.getUTCHours() < 10 ? `0${timeSpan.getUTCHours()}` : timeSpan.getUTCHours();
-    let timeSpanMinutes = timeSpan.getUTCMinutes() < 10 ? `0${timeSpan.getUTCMinutes()}` : timeSpan.getUTCMinutes();
-    let timeSpanSeconds = timeSpan.getUTCSeconds() < 10 ? `0${timeSpan.getUTCSeconds()}` : timeSpan.getUTCSeconds();
-    let timeSpanMilliseconds = `${timeSpan.getUTCMilliseconds()}`;
-    timeSpanMilliseconds = `${'0'.repeat(3 - timeSpanMilliseconds.length)}${timeSpanMilliseconds}`;
-    return `${timeSpanHours}:${timeSpanMinutes}:${timeSpanSeconds}.${timeSpanMilliseconds}`;
+    return timeSpan.toJSON().slice(11, -1);
 }
 
 
