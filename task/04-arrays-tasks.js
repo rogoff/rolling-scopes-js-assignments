@@ -201,7 +201,7 @@ function getTail(arr, n) {
  */
 function toCsvText(arr) {
    return arr.reduce(function(prev, curr) {
-      return prev + '\n' + curr;
+      return `${prev}\n${curr}`;
    });
 }
 
