@@ -39,7 +39,7 @@ function findElement(arr, value) {
  */
 function generateOdds(len) {
    let firstVal = 1;
-   return Array.from({length: len}, (elem, ind) => (ind > 0) ? firstVal += 2 : firstVal);
+   return Array.from({length: len}, (elem, ind) => { return ind > 0 ? firstVal += 2 : firstVal; });
 }
 
 
