@@ -251,7 +251,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   return arr.reduce((prev, curr, ind) => { return (ind % 2) ? prev.concat(curr) : prev; }, []);
+   return arr.reduce((prev, curr, ind) => (ind % 2) ? prev.concat(curr) : prev, []);
 }
 
 
