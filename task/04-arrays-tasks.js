@@ -506,7 +506,9 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+   return array.reduce((prev, curr) => { prev.has(keySelector(curr)) ?
+     prev.set(keySelector(curr), prev.get(keySelector(curr)).concat([(valueSelector(curr))])) :
+     prev.set(keySelector(curr), Array(valueSelector(curr))); return prev;}, new Map());
 }
 
 
