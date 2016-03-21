@@ -564,7 +564,15 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+   const exMid = (arr.length - 1) / 2;
+   const mid = Math.round(exMid);
+   const isEven = arr.length % 2;
+
+   return arr.map((e, i, a) => {
+      if (i < exMid) { return a[ i + mid + isEven] }
+      else if (i > exMid) { return a[ i - mid - isEven] }
+      else if (i === exMid) return e;
+   });
 }
 
 
