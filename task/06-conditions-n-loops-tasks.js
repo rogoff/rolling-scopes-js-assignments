@@ -242,7 +242,12 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    let reverseNum = [];
+    while (num / 10 > 0) {
+        reverseNum.push(num % 10);
+        num = Math.floor(num / 10);
+    }
+    return Number(reverseNum.join(''));
 }
 
 
