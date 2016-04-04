@@ -142,7 +142,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *     },        
  *     radius: 20
  *  }
- * 
+ *
  * Point is object of 
  *  {
  *     x: 5,
@@ -272,7 +272,21 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    let arr = `${ccn}`.split('').reverse();
+    let sum = Number(arr[0]);
+    for( let i = 1; i < arr.length; i++) {
+        let dblElem = Number(arr[i] * 2);
+        if (((i + 1) % 2) === 0) {
+            if (dblElem > 9) {
+                sum += dblElem - 9;
+            } else {
+                sum += dblElem;
+            }
+        } else {
+            sum += Number(arr[i]);
+        }
+    }
+    return !(sum % 10);
 }
 
 
