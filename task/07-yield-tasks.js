@@ -33,7 +33,15 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    yield '99 bottles of beer on the wall, 99 bottles of beer.';
+    for (let i = 98; i >= 1; i--) {
+        let s = (i === 1) ? '' : 's';
+        yield `Take one down and pass it around, ${i} bottle${s} of beer on the wall.`;
+        yield `${i} bottle${s} of beer on the wall, ${i} bottle${s} of beer.`;
+    }
+    yield `Take one down and pass it around, no more bottles of beer on the wall.`;
+    yield `No more bottles of beer on the wall, no more bottles of beer.`;
+    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
 }
 
 
