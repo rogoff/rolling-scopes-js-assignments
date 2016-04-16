@@ -163,16 +163,22 @@ function* breadthTraversalTree(root) {
 function* mergeSortedSequences(source1, source2) {
     let s1 = source1();
     let s2 = source2();
+    let src1 = s1.next().value;
+    let src2 = s2.next().value;
 
     while (true) {
-        let src1 = s1.next().value;
-        let src2 = s2.next().value;
-        if ((src1 === undefined) || (src2 === undefined)) {
-            yield src2 || src1;
-        }
-        else {
-            yield Math.min(src1, src2);
-            yield Math.max(src1, src2);
+        if (src1 === undefined) {
+            yield src2;
+            src2 = s2.next().value;
+        } else if (src2 === undefined) {
+            yield src1;
+            src1 = s1.next().value;
+        } else if (src1 < src2) {
+            yield src1;
+            src1 = s1.next().value;
+        } else {
+            yield src2;
+            src2 = s2.next().value;
         }
     }
 }
