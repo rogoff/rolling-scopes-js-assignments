@@ -17,8 +17,105 @@
  *  ]
  */
 function createCompassPoints() {
-    throw new Error('Not implemented');
-    var sides = ['N','E','S','W'];  // use array of cardinal directions only!
+    var sides = ['N', 'E', 'S', 'W'];  // use array of cardinal directions only!
+    let arr = [];
+
+    for (let i = 0; i <= 315; i+= 11.25) {
+        //NbW, N, NbE, ..., EbN, E, EbS, ... , SbE, S, SbW, ...., WbS, W, WbN ....
+        if (i % 90 === 0) {
+            if (i === 0) {
+                arr[(360 - 11.25) / 11.25] = {
+                    abbreviation: `${sides[i]}b${sides[(360 - 90) / 90]}`,
+                    azimuth: (360 - 11.25)
+                };
+            } else {
+                arr[(i - 11.25) / 11.25] = {
+                    abbreviation: `${sides[i / 90]}b${sides[(i - 90) / 90]}`,
+                    azimuth: i - 11.25
+                };
+            }
+            arr[i / 11.25] = {
+                abbreviation: sides[i / 90],
+                azimuth: i
+            };
+            if ((i + 90) === 360) {
+                arr[(i + 11.25) / 11.25] = {
+                    abbreviation: `${sides[i / 90]}b${sides[0]}`,
+                    azimuth: i + 11.25
+                };
+            } else {
+                arr[(i + 11.25) / 11.25] = {
+                    abbreviation: `${sides[i / 90]}b${sides[(i + 90) / 90]}`,
+                    azimuth: i + 11.25
+                };
+            }
+            //..., NEbN, NE, NEbE, ..., SEbE, SE, SEbS, ... , SWbS, SW, SWbW, ...., NWbW, NW, NWbN ....
+        } else if ((i % 45 === 0) && ((i % 90) !== 0)) {
+            if (Math.floor(i / 90) % 2 === 0) {
+                arr[(i - 11.25)/ 11.25] = {
+                    abbreviation: `${sides[(i - 45) / 90]}${sides[(i + 45) / 90]}b${sides[(i - 45) / 90]}`,
+                    azimuth: i - 11.25
+                };
+                arr[i / 11.25] = {
+                    abbreviation: `${sides[(i - 45) / 90]}${sides[(i + 45) / 90]}`,
+                    azimuth: i
+                };
+                arr[(i + 11.25)/ 11.25] = {
+                    abbreviation: `${sides[(i - 45) / 90]}${sides[(i + 45) / 90]}b${sides[(i + 45) / 90]}`,
+                    azimuth: i + 11.25
+                };
+            } else if ((i + 45) === 360) {
+                arr[(i - 11.25)/ 11.25] = {
+                    abbreviation: `${sides[0]}${sides[(i - 45) / 90]}b${sides[(i - 45) / 90]}`,
+                    azimuth: i - 11.25
+                };
+                arr[i / 11.25] = {
+                    abbreviation: `${sides[0]}${sides[(i - 45) / 90]}`,
+                    azimuth: i
+                };
+                arr[(i + 11.25)/ 11.25] = {
+                    abbreviation: `${sides[0]}${sides[(i - 45) / 90]}b${sides[0]}`,
+                    azimuth: i + 11.25
+                };
+            } else {
+                arr[(i - 11.25)/ 11.25] = {
+                    abbreviation: `${sides[(i + 45) / 90]}${sides[(i - 45) / 90]}b${sides[(i - 45) / 90]}`,
+                    azimuth: i - 11.25
+                };
+                arr[i / 11.25] = {
+                    abbreviation: `${sides[(i + 45) / 90]}${sides[(i - 45) / 90]}`,
+                    azimuth: i
+                };
+                arr[(i + 11.25)/ 11.25] = {
+                    abbreviation: `${sides[(i + 45) / 90]}${sides[(i - 45) / 90]}b${sides[(i + 45) / 90]}`,
+                    azimuth: i + 11.25
+                };
+            }
+        }
+    }
+
+    //NNE, ... ENE, ....
+    for (let i = 0; i <= 348.75; i+= 11.25) {
+        if ((i % 22.5 === 0) && ((i % 45) !== 0)) {
+            if (Math.floor(i / 45) % 2 === 0) {
+                arr[i / 11.25] = {
+                    abbreviation: `${sides[(i - 22.5) / 90]}${arr[(i + 22.5) / 11.25].abbreviation}`,
+                    azimuth: i
+                };
+            } else if ((i + 22.5) === 360) {
+                arr[i / 11.25] = {
+                    abbreviation: `${sides[0]}${arr[(i - 22.5) / 11.25].abbreviation}`,
+                    azimuth: i
+                };
+            } else {
+                arr[i / 11.25] = {
+                    abbreviation: `${sides[(i + 22.5) / 90]}${arr[(i - 22.5) / 11.25].abbreviation}`,
+                    azimuth: i
+                };
+            }
+        }
+    }
+    return arr;
 }
 
 
